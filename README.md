@@ -89,14 +89,14 @@ The Farm class includes the following attributes:
 
 The Movement class includes the following attributes:
 
-id: A unique identifier for the movement event.
-account: The account associated with the movement.
-movementReason: The reason for the movement.
-species: The species involved in the movement.
-origin: The farm from which the movement originates. This is a many-to-one relationship with the Farm class.
-destination: The farm to which the movement is destined. This is a many-to-one relationship with the Farm class.
-numberOfItemsMoved: The number of items being moved.
-shipmentDate: The date of the shipment.
+- id: A unique identifier for the movement event.
+- account: The account associated with the movement.
+- movementReason: The reason for the movement.
+- species: The species involved in the movement.
+- origin: The farm from which the movement originates. This is a many-to-one relationship with the Farm class.
+- destination: The farm to which the movement is destined. This is a many-to-one relationship with the Farm class.
+- numberOfItemsMoved: The number of items being moved.
+- shipmentDate: The date of the shipment.
 
 ## API Endpoints
 
