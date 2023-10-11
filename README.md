@@ -126,3 +126,5 @@ The Movement class includes the following attributes:
   - Status Code: 200 (OK) if successful, 400 (Bad Request) if there are errors.
  
 ### Images
+
+<img width="500" alt="img1" src="https://github.com/bhansaliharshg/animal-movements/blob/feff86470fad6e590d82f6eb8be9155c7ac00f89/screenshots/Farm%20Details%20Modal.png">
