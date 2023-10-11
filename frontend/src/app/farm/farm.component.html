@@ -1,0 +1,29 @@
+<div class="row farm">
+    <div class="table-responsive">
+        <table class="table caption-top">
+            <caption style="text-align: center; font-size: 1.5rem;">Farms</caption>
+            <thead>
+                <tr>
+                    <th>Premise Id</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Co-ordinates</th>
+                    <th>Total Animals</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let farm of farms | paginate: {itemsPerPage: 10, currentPage: p}">
+                    <td>{{farm.premiseId}}</td>
+                    <td>{{farm.name}}</td>
+                    <td>{{farm.address}}, {{farm.city}}, {{farm.state}} {{farm.postalCode}}</td>
+                    <td>{{farm.latitude}}, {{farm.longitude}}</td>
+                    <td>{{farm.totalAnimals}}</td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="paginationControls"><pagination-controls
+                            (pageChange)="p = $event"></pagination-controls></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

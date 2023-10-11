@@ -1,0 +1,154 @@
+<div class="row movement">
+    <div class="table-responsive">
+        <table class="table caption-top">
+            <caption style="text-align: center; font-size: 1.5rem;">Movements Map - Click <i>View</i> to visualize.</caption>
+            <thead>
+                <tr>
+                    <th colspan="8">
+                        <div id="map" style="height: 400px;"></div>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="6">
+                    </th>
+                    <th colspan="1">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 origin"></div>
+                            <div class="col-sm-8 col-lg-8">Origin</div>
+                        </div>
+                    </th>
+                    <th colspan="1">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 destination"></div>
+                            <div class="col-sm-8 col-lg-8">Destination</div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Company</th>
+                    <th>Reason</th>
+                    <th>Species</th>
+                    <th>Origin Farm</th>
+                    <th>Destination Farm</th>
+                    <th>Animals Moved</th>
+                    <th>Shipment Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let movement of movements | paginate: {itemsPerPage: 10, currentPage: p}">
+                    <td>{{movement.id}}</td>
+                    <td>{{movement.account}}</td>
+                    <td>{{movement.movementReason}}</td>
+                    <td>{{movement.species}}</td>
+                    <td><a class="link" data-bs-toggle="modal" data-bs-target="#farmDetails"
+                            (click)="getFarmDetails(movement.origin.premiseId)">{{movement.origin.premiseId}}</a></td>
+                    <td><a class="link" data-bs-toggle="modal" data-bs-target="#farmDetails"
+                            (click)="getFarmDetails(movement.destination.premiseId)">{{movement.destination.premiseId}}</a>
+                    </td>
+                    <td>{{movement.numberOfItemsMoved}}</td>
+                    <td>{{movement.shipmentDate}}</td>
+                    <td><a class="link" data-bs-toggle="modal" data-bs-target="#viewMovement" (click)="generateMap(movement)">View</a></td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="paginationControls"><pagination-controls
+                            (pageChange)="p = $event"></pagination-controls></td>
+                    <!-- <td colspan="2"><a class="link" data-bs-toggle="modal" data-bs-target="#addMovement">Add New Movement</a></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="farmDetails" tabindex="-1" aria-labelledby="farmDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="farmDetailsLabel">Farm Details<span *ngIf="selectedFarm"> -
+                        {{selectedFarm}}</span></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row" *ngIf="farm; else elseBlock">
+                    <ul class="list-group">
+                        <li class="list-group-item"><b>Name</b>: {{farm.name}}</li>
+                        <li class="list-group-item"><b>Address</b>: {{farm.address}}, {{farm.city}}, {{farm.state}}
+                            {{farm.postalCode}}</li>
+                        <li class="list-group-item"><b>Co-ordinates</b>: {{farm.latitude}},{{farm.longitude}}</li>
+                        <li class="list-group-item"><b>Total Animals</b>: {{farm.totalAnimals}}</li>
+                    </ul>
+                </div>
+                <ng-template #elseBlock>
+                    <h4 style="color: red;">Error: Farm details not present. Please try again.</h4>
+                </ng-template>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Form Modal -->
+<!-- <div class="modal fade" id="addMovement" tabindex="-1" aria-labelledby="addMovementLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addMovementLabel">New Movement</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row" *ngIf="successMessage">
+                    <p style="background-color: rgba(0,255,0,0.3); color: white;">{{successMessage}}</p>
+                </div>
+                <div class="row" *ngIf=""errorMessage>
+                    <p style="background-color: rgba(255,0,0,0.3); color: white;">{{errorMessage}}</p>
+                </div>
+                <form #myForm="ngForm" (ngSubmit)="submitForm()">
+                    <div class="mb-3">
+                        <label for="company" class="form-label">Company</label>
+                        <input type="text" class="form-control" id="company" name="company" [(ngModel)]="newMovementData.account" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reasonOfMovement" class="form-label">Reason of Movement</label>
+                        <select class="form-select form-select-lg mb-3 form-control" id="reasonOfMovement" name="reasonOfMovement" [(ngModel)]="newMovementData.movementReason" required>
+                            <option selected value="default">Select a Reason of movement</option>
+                            <option *ngFor="let reason of reasons" value="reason">{{reason}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="species" class="form-label">Species</label>
+                        <input type="text" class="form-control" id="species" name="species" [(ngModel)]="newMovementData.species" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="origin" class="form-label">Origin Farm</label>
+                        <select class="form-select form-select-lg mb-3 form-control" id="origin" name="origin" [(ngModel)]="newMovementData.origin" required>
+                            <option selected value="default">Select a Farm</option>
+                            <option *ngFor="let premiseId of premiseIds" value="premiseId">{{premiseId}}</option>
+                        </select> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="destination" class="form-label">Destination Farm</label>
+                        <select class="form-select form-select-lg mb-3 form-control" id="destination" name="destination" [(ngModel)]="newMovementData.destination" required>
+                            <option selected value="default">Select a Farm</option>
+                            <option *ngFor="let premiseId of premiseIds" value="premiseId">{{premiseId}}</option>
+                        </select> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="animalsMoved" class="form-label">Animal Moved</label>
+                        <input type="number" class="form-control" id="animalsMoved" name="animalsMoved" [(ngModel)]="newMovementData.numberOfItemsMoved" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="shipmentDate" class="form-label">Shipment Date</label>
+                        <input type="date" class="form-control" id="shipmentDate" name="shipmentDate" [(ngModel)]="newMovementData.shipmentDate" required>
+                    </div>
+                    <button style="float: left;" type="reset" class="btn btn-primary">Reset</button>
+                    <button style="float: right;" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->

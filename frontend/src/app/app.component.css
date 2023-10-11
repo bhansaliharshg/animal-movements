@@ -1,0 +1,30 @@
+.center {
+    background-color: #E7E9EB; /* Green */
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.container {
+    border: 0.5rem solid black;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: medium;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+.header {
+    background-color: #E7E9EB;
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 0.3rem solid black;
+}
+
+.footer {
+    background-color: #E7E9EB;
+    text-align: center;
+    padding: 1rem;
+    border-top: 0.3rem solid black;
+}
