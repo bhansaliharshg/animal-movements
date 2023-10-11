@@ -127,4 +127,21 @@ The Movement class includes the following attributes:
  
 ### Images
 
-<img width="500" alt="img1" src="https://github.com/bhansaliharshg/animal-movements/blob/feff86470fad6e590d82f6eb8be9155c7ac00f89/screenshots/Farm%20Details%20Modal.png">
+#### Home Page
+
+<img width="600" alt="one" src="https://github.com/bhansaliharshg/animal-movements/blob/3305900a2878f430b8c9c4ebb455c13ee3f03612/screenshots/Home%20Page.png">
+
+#### Movements Table
+
+<img width="600" alt="one" src="https://github.com/bhansaliharshg/animal-movements/blob/3305900a2878f430b8c9c4ebb455c13ee3f03612/screenshots/Movements%20Table.png">
+
+#### Visualising Movements
+
+<img width="600" alt="one" src="https://github.com/bhansaliharshg/animal-movements/blob/3305900a2878f430b8c9c4ebb455c13ee3f03612/screenshots/Visualising%20Movement.png">
+
+#### Farm Details Modal
+<img width="600" alt="one" src="https://github.com/bhansaliharshg/animal-movements/blob/feff86470fad6e590d82f6eb8be9155c7ac00f89/screenshots/Farm%20Details%20Modal.png">
+
+#### Farm Table
+
+<img width="600" alt="one" src="https://github.com/bhansaliharshg/animal-movements/blob/3305900a2878f430b8c9c4ebb455c13ee3f03612/screenshots/Farms%20Table.png">
