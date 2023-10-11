@@ -73,15 +73,15 @@ The Spring boot (backend) uses two entities "Farm" and "Movement"
 
 The Farm class includes the following attributes:
 
-premiseId: The unique identifier for the farm.
-name: The name of the farm.
-address: The street address of the farm.
-city: The city where the farm is located.
-state: The state where the farm is located.
-postalCode: The postal code or ZIP code of the farm's location.
-latitude: The latitude coordinates of the farm's location.
-longitude: The longitude coordinates of the farm's location.
-totalAnimals: The total number of animals on the farm.
+- premiseId: The unique identifier for the farm.
+- name: The name of the farm.
+- address: The street address of the farm.
+- city: The city where the farm is located.
+- state: The state where the farm is located.
+- postalCode: The postal code or ZIP code of the farm's location.
+- latitude: The latitude coordinates of the farm's location.
+- longitude: The longitude coordinates of the farm's location.
+- totalAnimals: The total number of animals on the farm.
 
 ### Movement Entity
 
